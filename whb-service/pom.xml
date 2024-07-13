@@ -6,7 +6,6 @@
         <groupId>com.example</groupId>
         <artifactId>whb-boot-quickstart</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>com.example</groupId>
@@ -19,6 +18,11 @@
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>whb-module</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>whb-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
