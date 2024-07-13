@@ -5,12 +5,14 @@ import com.example.whb.security.handler.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,6 +47,7 @@ public class SecurityConfig {
      * 跨域过滤器
      */
     @Autowired
+    @Lazy
     private CorsFilter corsFilter;
 
     /**
@@ -57,6 +60,18 @@ public class SecurityConfig {
         daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
         return new ProviderManager(daoAuthenticationProvider);
     }
+
+    /**
+     * 放行白名单
+     */
+    private String[] WHITELIST = {
+            "/doc.html",
+            "/webjars/**",
+            "/v2/**",
+            "/auth/login",
+            "/swagger-resources"
+    };
+
     /**
      * anyRequest          |   匹配所有请求路径
      * access              |   SpringEl表达式结果为true时可以访问
@@ -89,23 +104,36 @@ public class SecurityConfig {
                 // 注解标记允许匿名访问的url
                 .authorizeHttpRequests((requests) -> {
                     // 对于登录login 注册register 验证码captchaImage 允许匿名访问
-                    requests.requestMatchers("/login", "/register", "/captchaImage").permitAll()
+                    requests.antMatchers("/auth/login", "/register", "/captchaImage").permitAll()
                             // 静态资源，可匿名访问
-                            .requestMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/profile/**").permitAll()
-                            .requestMatchers("/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/*/api-docs", "/druid/**").permitAll()
+                            .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/profile/**").permitAll()
+                            .antMatchers("/druid/**").permitAll()
                             // 除上面外的所有请求全部需要鉴权认证
                             .anyRequest().authenticated();
                 })
-                // 添加Logout filter
-                .logout(logout -> logout.logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler))
+                .formLogin((formLogin) ->
+                                formLogin.loginProcessingUrl("/login").permitAll() // 登录接口可以匿名访问
+                        //   .successHandler(new MyAuthenticationSuccessHandler()) // 登录成功后的处理回调
+                        // .failureHandler(new MyAuthenticationFailureHandler()) // 登录失败后的处理回调
+                        // .defaultSuccessUrl("/index") // 登录成功访问 /index 页面
+                )
                 // 添加JWT filter
                 .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 // 添加CORS filter
                 .addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class)
                 .addFilterBefore(corsFilter, LogoutFilter.class)
+                .formLogin()
         ;
 
         return httpSecurity.build();
+    }
+
+    /**
+     * WHITELIST 自定义的一个字符串数组,放置放行资源
+     */
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().antMatchers(WHITELIST);
     }
 
     /**

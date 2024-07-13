@@ -3,11 +3,11 @@ package com.example.whb.common.controller;
 
 import com.example.whb.common.response.AjaxResult;
 import com.example.whb.exception.CoderitlException;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/file")
-public class UploadController extends BaseController{
+public class UploadController extends BaseController {
 
     @Value("${file.upload-dir:'D://upload'}")
     private String uploadDir;
