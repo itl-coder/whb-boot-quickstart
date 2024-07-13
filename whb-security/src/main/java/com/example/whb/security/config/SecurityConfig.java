@@ -1,6 +1,7 @@
 package com.example.whb.security.config;
 
 import com.example.whb.security.filter.JwtAuthenticationTokenFilter;
+import com.example.whb.security.handler.AuthenticationFailureHandlerImpl;
 import com.example.whb.security.handler.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -43,23 +45,15 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private AuthenticationFailureHandlerImpl authenticationFailureHandler;
+
     /**
      * 跨域过滤器
      */
-    @Autowired
     @Lazy
+    @Autowired
     private CorsFilter corsFilter;
-
-    /**
-     * 身份验证实现
-     */
-    @Bean
-    public AuthenticationManager authenticationManager() {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
-        return new ProviderManager(daoAuthenticationProvider);
-    }
 
     /**
      * 放行白名单
@@ -71,6 +65,17 @@ public class SecurityConfig {
             "/auth/login",
             "/swagger-resources"
     };
+
+    /**
+     * 身份验证实现
+     */
+    @Bean
+    public AuthenticationManager authenticationManager() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        return new ProviderManager(daoAuthenticationProvider);
+    }
 
     /**
      * anyRequest          |   匹配所有请求路径
@@ -111,12 +116,7 @@ public class SecurityConfig {
                             // 除上面外的所有请求全部需要鉴权认证
                             .anyRequest().authenticated();
                 })
-                .formLogin((formLogin) ->
-                                formLogin.loginProcessingUrl("/login").permitAll() // 登录接口可以匿名访问
-                        //   .successHandler(new MyAuthenticationSuccessHandler()) // 登录成功后的处理回调
-                        // .failureHandler(new MyAuthenticationFailureHandler()) // 登录失败后的处理回调
-                        // .defaultSuccessUrl("/index") // 登录成功访问 /index 页面
-                )
+                .formLogin(formLogin->formLogin.loginProcessingUrl("/auth/login").failureHandler(authenticationFailureHandler))
                 // 添加JWT filter
                 .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 // 添加CORS filter

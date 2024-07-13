@@ -1,4 +1,8 @@
 spring:
+  security:
+    user:
+      name: user
+      password: user
   datasource:
     url: jdbc:mysql://localhost:3306/school_driv?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useServerPrepStmts=true
     username: root

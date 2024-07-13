@@ -9,6 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import utils.AuthenticationContextHolder;
 
+/**
+ * 登录认证处理
+ */
 @Service
 public class LoginServiceImpl implements LoginService {
     @Autowired

@@ -77,14 +77,10 @@ public class GlobalExceptionHandler extends RuntimeException {
     @ExceptionHandler(RuntimeException.class)
     public AjaxResult handleRuntimeException(RuntimeException e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',发生未知异常.", requestURI, e);
+        log.error("请求地址'{}',发生未知异常,{}", requestURI, e.getMessage());
         return AjaxResult.error(e.getMessage());
     }
 
-
-    /**
-     * 自定义验证异常
-     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Object handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error(e.getMessage(), e);
