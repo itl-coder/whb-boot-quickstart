@@ -2,6 +2,7 @@ package com.example.whb.security.filter;
 
 
 import com.example.whb.security.service.TokenService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -15,6 +16,7 @@ import java.io.IOException;
 /**
  * Token过滤器 验证Token有效性
  */
+@Slf4j
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
@@ -23,6 +25,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
+        log.info("into JwtAuthenticationTokenFilter doFilterInternal.................................................");
         // LoginUser loginUser = tokenService.getLoginUser(request);
         // if (StringUtils.isNotNull(loginUser) && StringUtils.isNull(SecurityUtils.getAuthentication())) {
         //     tokenService.verifyToken(loginUser);

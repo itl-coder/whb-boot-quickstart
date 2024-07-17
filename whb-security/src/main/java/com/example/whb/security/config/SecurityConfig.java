@@ -1,8 +1,11 @@
 package com.example.whb.security.config;
 
 import com.example.whb.security.filter.JwtAuthenticationTokenFilter;
+import com.example.whb.security.handler.AuthenticationEntryPointImpl;
 import com.example.whb.security.handler.AuthenticationFailureHandlerImpl;
 import com.example.whb.security.handler.LogoutSuccessHandlerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,12 +16,10 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -29,6 +30,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig {
 
+    private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
     /**
      * 自定义退出处理类 LogoutSuccessHandlerImpl
      */
@@ -47,7 +49,11 @@ public class SecurityConfig {
 
     @Autowired
     private AuthenticationFailureHandlerImpl authenticationFailureHandler;
-
+    /**
+     * 认证失败处理类
+     */
+    @Autowired
+    private AuthenticationEntryPointImpl unauthorizedHandler;
     /**
      * 跨域过滤器
      */
@@ -56,21 +62,12 @@ public class SecurityConfig {
     private CorsFilter corsFilter;
 
     /**
-     * 放行白名单
-     */
-    private String[] WHITELIST = {
-            "/doc.html",
-            "/webjars/**",
-            "/v2/**",
-            "/auth/login",
-            "/swagger-resources"
-    };
-
-    /**
      * 身份验证实现
      */
     @Bean
     public AuthenticationManager authenticationManager() {
+        log.info("into Security authenticationManager...........................................");
+
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
@@ -94,6 +91,8 @@ public class SecurityConfig {
      */
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        log.info("into Security filterChain...........................................");
+
         httpSecurity
                 // 关闭 CSRF
                 .csrf(csrf -> csrf.disable())
@@ -102,7 +101,7 @@ public class SecurityConfig {
                     headersCustomizer.cacheControl(cache -> cache.disable()).frameOptions(options -> options.sameOrigin());
                 })
                 // 认证失败处理类
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(null))
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 // 基于token，所以不需要session
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // 注解标记允许匿名访问的url
@@ -111,29 +110,18 @@ public class SecurityConfig {
                     // 对于登录login 注册register 验证码captchaImage 允许匿名访问
                     requests.antMatchers("/auth/login", "/register", "/captchaImage").permitAll()
                             // 静态资源，可匿名访问
-                            .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/profile/**").permitAll()
-                            .antMatchers("/druid/**").permitAll()
+                            .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/profile/**", "/favicon.ico").permitAll()
+                            .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/*/api-docs", "/druid/**").permitAll()
                             // 除上面外的所有请求全部需要鉴权认证
                             .anyRequest().authenticated();
                 })
-                .formLogin(formLogin->formLogin.loginProcessingUrl("/auth/login").failureHandler(authenticationFailureHandler))
                 // 添加JWT filter
                 .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 // 添加CORS filter
                 .addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class)
-                .addFilterBefore(corsFilter, LogoutFilter.class)
-                .formLogin()
-        ;
+                .addFilterBefore(corsFilter, LogoutFilter.class);
 
         return httpSecurity.build();
-    }
-
-    /**
-     * WHITELIST 自定义的一个字符串数组,放置放行资源
-     */
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers(WHITELIST);
     }
 
     /**
@@ -141,6 +129,7 @@ public class SecurityConfig {
      */
     @Bean
     public CorsFilter corsFilter() {
+        log.info("into Security corsFilter...........................................");
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         // 设置访问源地址
@@ -163,6 +152,7 @@ public class SecurityConfig {
      */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        log.info("into Security bCryptPasswordEncoder...........................................");
         return new BCryptPasswordEncoder();
     }
 }

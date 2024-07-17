@@ -15,7 +15,7 @@ import java.nio.file.AccessDeniedException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 @Slf4j
-@RestControllerAdvice
+// @RestControllerAdvice
 public class GlobalExceptionHandler extends RuntimeException {
     /**
      * 全局异常处理

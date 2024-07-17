@@ -1,23 +1,23 @@
 package com.example.whb.domain;
 
-
 import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
-
 
 
 /**
  * 登录用户身份权限
  */
 @Data
+@Slf4j
 public class LoginUser implements UserDetails {
     private static final long serialVersionUID = 1L;
+    private SysUser sysUser;
 
     /**
      * 用户ID
@@ -50,67 +50,71 @@ public class LoginUser implements UserDetails {
     private String loginLocation;
 
     /**
-     * 浏览器类型
-     */
-    private String browser;
-
-    /**
-     * 操作系统
-     */
-    private String os;
-
-    /**
      * 权限列表
      */
     private Set<String> permissions;
 
+
     public LoginUser() {
+    }
+
+    public LoginUser(SysUser sysUser, Set<String> permissions) {
+        this.sysUser = sysUser;
+        this.permissions = permissions;
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        log.info("into LoginUser getAuthorities...........................");
+        return null;
     }
 
     @Override
     public String getPassword() {
-        return "";
+        log.info("into LoginUser getPassword...........................");
+        return sysUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return "";
+        log.info("into LoginUser getUsername...........................");
+        return sysUser.getUsername();
     }
 
     /**
-     * 账户是否未过期,过期无法验证
+     * 账号没有过期状态(true账号没有过期，false账号已经过期)
+     *
+     * @return true
      */
     @JSONField(serialize = false)
     @Override
     public boolean isAccountNonExpired() {
+        log.info("into LoginUser isAccountNonExpired...........................");
         return true;
     }
 
     /**
      * 指定用户是否解锁,锁定的用户无法进行身份验证
      *
-     * @return
+     * @return true
      */
     @JSONField(serialize = false)
     @Override
     public boolean isAccountNonLocked() {
+        log.info("isAccountNonLocked: {}", sysUser.getLocked().equals(1));
         return true;
     }
 
     /**
      * 指示是否已过期的用户的凭据(密码),过期的凭据防止认证
      *
-     * @return
+     * @return true
      */
     @JSONField(serialize = false)
     @Override
     public boolean isCredentialsNonExpired() {
+        log.info("isCredentialsNonExpired: {}", sysUser.getExpired().equals(0));
         return true;
     }
 
@@ -122,6 +126,7 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false)
     @Override
     public boolean isEnabled() {
+        log.info("isEnabled: {}", sysUser.getEnabled().equals(0));
         return true;
     }
 }
