@@ -1,7 +1,6 @@
 package com.example.whb.service.impl;
 
 import com.example.whb.domain.LoginUser;
-import com.example.whb.domain.SysUser;
 import com.example.whb.domain.vo.LoginBody;
 import com.example.whb.exception.CoderitlException;
 import com.example.whb.service.LoginService;

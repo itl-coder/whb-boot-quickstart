@@ -7,7 +7,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class BaseEntity {
-    private String createBy;
+    /**
+     * 创建人Id
+     */
+    private Integer createBy;
+
+    /**
+     * 更新人Id
+     */
+    private Integer updateBy;
+
     /**
      * 创建时间
      */
@@ -27,6 +36,10 @@ public class BaseEntity {
      */
     private String remark;
 
+
+    /**
+     * 是否删除
+     */
     @TableLogic
     private Integer idDel;
 }

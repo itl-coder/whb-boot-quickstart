@@ -7,13 +7,16 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.whb.entity.BaseEntity;
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serializable;
 
+/**
+ * 系统用户
+ *
+ * @TableName sys_user
+ */
 @TableName(value = "sys_user")
 @Data
-@ToString
 public class SysUser extends BaseEntity implements Serializable {
     /**
      * 自增主键
@@ -32,29 +35,29 @@ public class SysUser extends BaseEntity implements Serializable {
     private String password;
 
     /**
-     * 辅助密码
-     */
-    private String plainPassword;
-
-    /**
-     * 昵称
+     * 用户昵称
      */
     private String nickname;
 
     /**
-     * 邮箱
+     * 联系人邮箱
      */
     private String email;
 
     /**
-     * 手机号
+     * 联系人手机号
      */
-    private String phone;
+    private String mobile;
 
     /**
      * 状态
      */
     private Integer status;
+
+    /**
+     * 辅助密码
+     */
+    private String plainPassword;
 
     /**
      * 头像
