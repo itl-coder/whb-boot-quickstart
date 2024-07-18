@@ -40,3 +40,7 @@ user:
     maxRetryCount: 5
     # 密码锁定时间（默认10分钟）
     lockTime: 10
+
+swagger:
+  enabled: true
+  title: "xxx 后台管理系统"

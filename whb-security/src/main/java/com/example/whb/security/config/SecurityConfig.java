@@ -22,9 +22,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.web.header.Header;
+import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
@@ -104,8 +108,6 @@ public class SecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 // 基于token，所以不需要session
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                // 注解标记允许匿名访问的url
-                // 注解标记允许匿名访问的url
                 .authorizeHttpRequests((requests) -> {
                     // 对于登录login 注册register 验证码captchaImage 允许匿名访问
                     requests.antMatchers("/auth/login", "/register", "/captchaImage").permitAll()
