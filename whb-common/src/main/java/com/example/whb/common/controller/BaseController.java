@@ -16,7 +16,6 @@ import java.util.Date;
  */
 @Slf4j
 public class BaseController {
-
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
      */
@@ -26,6 +25,7 @@ public class BaseController {
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
+                log.info("日期数据获取自动转换: {}, {}", text, DateUtils.parseDate(text));
                 setValue(DateUtils.parseDate(text));
             }
         });
@@ -100,6 +100,10 @@ public class BaseController {
         return rows > 0 ? AjaxResult.success() : AjaxResult.error();
     }
 
+    protected AjaxResult toAjax(int rows, String successMsg, String errorMsg) {
+        return rows > 0 ? AjaxResult.success(successMsg) : AjaxResult.error(errorMsg);
+    }
+
     /**
      * 响应返回结果
      *
@@ -108,6 +112,10 @@ public class BaseController {
      */
     protected AjaxResult toAjax(boolean result) {
         return result ? success() : error();
+    }
+
+    protected AjaxResult toAjax(boolean result, String successMsg, String errorMsg) {
+        return result ? success(successMsg) : error(errorMsg);
     }
 
     /**

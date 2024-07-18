@@ -90,8 +90,8 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false)
     @Override
     public boolean isAccountNonExpired() {
-        log.info("into LoginUser isAccountNonExpired...........................");
-        return true;
+        log.info("into LoginUser isAccountNonExpired: {}", sysUser.getExpired().equals(0));
+        return sysUser.getExpired().equals(0);
     }
 
     /**
@@ -102,8 +102,8 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false)
     @Override
     public boolean isAccountNonLocked() {
-        log.info("isAccountNonLocked: {}", sysUser.getLocked().equals(1));
-        return true;
+        log.info("into LoginUser isAccountNonLocked: {}", sysUser.getLocked().equals(0));
+        return sysUser.getLocked().equals(0);
     }
 
     /**
@@ -114,8 +114,8 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false)
     @Override
     public boolean isCredentialsNonExpired() {
-        log.info("isCredentialsNonExpired: {}", sysUser.getExpired().equals(0));
-        return true;
+        log.info("into LoginUser isCredentialsNonExpired: {}", sysUser.getExpired().equals(0));
+        return sysUser.getExpired().equals(0);
     }
 
     /**
@@ -126,7 +126,7 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false)
     @Override
     public boolean isEnabled() {
-        log.info("isEnabled: {}", sysUser.getEnabled().equals(0));
-        return true;
+        log.info("into LoginUser isEnabled: {}", sysUser.getEnabled().equals(0));
+        return sysUser.getEnabled().equals(0);
     }
 }

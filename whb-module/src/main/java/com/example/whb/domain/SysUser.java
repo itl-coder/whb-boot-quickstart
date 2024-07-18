@@ -5,16 +5,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.whb.entity.BaseEntity;
 import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @TableName(value = "sys_user")
 @Data
 @ToString
-public class SysUser implements Serializable {
+public class SysUser extends BaseEntity implements Serializable {
     /**
      * 自增主键
      */
@@ -30,6 +30,11 @@ public class SysUser implements Serializable {
      * 密码
      */
     private String password;
+
+    /**
+     * 辅助密码
+     */
+    private String plainPassword;
 
     /**
      * 昵称
@@ -52,11 +57,6 @@ public class SysUser implements Serializable {
     private Integer status;
 
     /**
-     * 备注
-     */
-    private String remark;
-
-    /**
      * 头像
      */
     private String photo;
@@ -77,14 +77,9 @@ public class SysUser implements Serializable {
     private Integer enabled;
 
     /**
-     * 创建时间
+     * 凭证是否过期
      */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
+    private Integer credentialExpired;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
