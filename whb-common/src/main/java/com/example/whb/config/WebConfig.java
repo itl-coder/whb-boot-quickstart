@@ -1,6 +1,7 @@
 package com.example.whb.config;
 
 import com.example.whb.convert.StringToDateConvert;
+import com.example.whb.intercptor.JwtCheckInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -21,6 +23,15 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private StringToDateConvert stringToDateConvert;
+    @Autowired
+    private JwtCheckInterceptor jwtCheckInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        log.info("into WebConfig addInterceptors..................");
+        registry.addInterceptor(jwtCheckInterceptor)
+                .addPathPatterns("/**");
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -53,6 +64,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 添加转换器
+     *
      * @param converters
      */
     @Override
