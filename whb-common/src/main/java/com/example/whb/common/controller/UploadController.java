@@ -1,8 +1,8 @@
 package com.example.whb.common.controller;
 
 
+import com.example.whb.common.exception.CoderitlException;
 import com.example.whb.common.response.AjaxResult;
-import com.example.whb.exception.CoderitlException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

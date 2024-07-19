@@ -1,4 +1,4 @@
-package com.example.whb.config;
+package com.example.whb.common.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

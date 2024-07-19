@@ -1,4 +1,4 @@
-package com.example.whb.config;
+package com.example.whb.common.config;
 
 
 import lombok.extern.slf4j.Slf4j;

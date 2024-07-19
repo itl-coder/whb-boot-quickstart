@@ -1,4 +1,4 @@
-package com.example.whb.exception;
+package com.example.whb.common.exception;
 
 import org.springframework.http.HttpStatus;
 

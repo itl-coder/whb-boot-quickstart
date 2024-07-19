@@ -1,4 +1,4 @@
-package com.example.whb.enums;
+package com.example.whb.common.enums;
 
 /**
  * 业务操作类型

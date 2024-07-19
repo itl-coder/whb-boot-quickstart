@@ -1,7 +1,7 @@
-package com.example.whb.config;
+package com.example.whb.common.config;
 
-import com.example.whb.convert.StringToDateConvert;
-import com.example.whb.intercptor.JwtCheckInterceptor;
+import com.example.whb.common.convert.StringToDateConvert;
+import com.example.whb.common.intercptor.JwtCheckInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

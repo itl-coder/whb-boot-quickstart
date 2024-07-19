@@ -1,4 +1,4 @@
-package com.example.whb.properties;
+package com.example.whb.common.properties;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

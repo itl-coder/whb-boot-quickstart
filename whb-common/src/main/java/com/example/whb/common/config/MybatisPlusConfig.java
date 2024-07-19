@@ -1,4 +1,4 @@
-package com.example.whb.config;
+package com.example.whb.common.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;

@@ -1,8 +1,8 @@
-package com.example.whb.annotation;
+package com.example.whb.common.annotation;
 
 
-import com.example.whb.enums.BusinessType;
-import com.example.whb.enums.OperatorType;
+import com.example.whb.common.enums.BusinessType;
+import com.example.whb.common.enums.OperatorType;
 
 import java.lang.annotation.*;
 

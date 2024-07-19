@@ -1,6 +1,6 @@
 package com.example.whb.security.handler;
 
-import com.example.whb.security.service.TokenService;
+import com.example.whb.common.service.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

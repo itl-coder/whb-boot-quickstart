@@ -1,4 +1,4 @@
-package com.example.whb.service;
+package com.example.whb.common.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

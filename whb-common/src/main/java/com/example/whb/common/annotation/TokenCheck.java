@@ -1,4 +1,4 @@
-package com.example.whb.annotation;
+package com.example.whb.common.annotation;
 
 import java.lang.annotation.*;
 

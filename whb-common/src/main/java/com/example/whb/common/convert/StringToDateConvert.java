@@ -1,6 +1,6 @@
-package com.example.whb.convert;
+package com.example.whb.common.convert;
 
-import com.example.whb.exception.CoderitlException;
+import com.example.whb.common.exception.CoderitlException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

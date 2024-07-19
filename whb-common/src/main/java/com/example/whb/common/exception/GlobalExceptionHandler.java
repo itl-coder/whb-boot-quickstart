@@ -1,4 +1,4 @@
-package com.example.whb.exception;
+package com.example.whb.common.exception;
 
 
 import com.example.whb.common.response.AjaxResult;
@@ -8,7 +8,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.file.AccessDeniedException;

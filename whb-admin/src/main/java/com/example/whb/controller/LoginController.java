@@ -2,7 +2,6 @@ package com.example.whb.controller;
 
 import com.example.whb.common.controller.BaseController;
 import com.example.whb.common.response.AjaxResult;
-import com.example.whb.domain.LoginUser;
 import com.example.whb.domain.vo.LoginBody;
 import com.example.whb.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;

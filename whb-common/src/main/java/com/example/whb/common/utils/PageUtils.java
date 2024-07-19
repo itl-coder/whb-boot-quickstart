@@ -2,7 +2,7 @@ package com.example.whb.common.utils;
 
 
 import com.example.whb.common.page.PageDomain;
-import com.example.whb.exception.CoderitlException;
+import com.example.whb.common.exception.CoderitlException;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 

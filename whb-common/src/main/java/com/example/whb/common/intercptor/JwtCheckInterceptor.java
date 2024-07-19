@@ -1,7 +1,7 @@
-package com.example.whb.intercptor;
+package com.example.whb.common.intercptor;
 
-import com.example.whb.annotation.TokenCheck;
-import com.example.whb.service.TokenService;
+import com.example.whb.common.annotation.TokenCheck;
+import com.example.whb.common.service.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

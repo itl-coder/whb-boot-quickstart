@@ -2,7 +2,7 @@ package com.example.whb.service.impl;
 
 import com.example.whb.domain.LoginUser;
 import com.example.whb.domain.vo.LoginBody;
-import com.example.whb.exception.CoderitlException;
+import com.example.whb.common.exception.CoderitlException;
 import com.example.whb.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

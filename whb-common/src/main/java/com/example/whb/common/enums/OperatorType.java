@@ -1,4 +1,4 @@
-package com.example.whb.enums;
+package com.example.whb.common.enums;
 
 /**
  * 操作人类别

@@ -1,4 +1,4 @@
-package com.example.whb.entity;
+package com.example.whb.common.entity;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
