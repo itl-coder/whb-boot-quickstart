@@ -211,15 +211,26 @@ public class TokenServiceImpl implements TokenService {
         return token;
     }
 
+    /**
+     * 从HttpServletRequest中获取有效的JWT令牌。
+     *
+     * @param request HTTP请求对象，从中尝试获取JWT令牌。
+     * @return 有效JWT令牌的字符串表示。
+     * @throws CoderitlException 如果令牌无效或不存在，抛出此异常，提示用户重新登录。
+     */
     @Override
-    public String getToken(HttpServletRequest request) {
+    public String getToken(HttpServletRequest request) throws CoderitlException {
+        // 尝试从请求头中获取JWT令牌信息
         // 尝试从请求头中获取JWT令牌
         String token = getTokenInfo(request);
+        // 验证获取到的令牌是否有效
         // 验证令牌的有效性
         if (this.verfiyToken(token)) {
             return token;
         }
         // 如果令牌无效，抛出异常，要求用户重新登录
+        // 如果令牌无效，抛出异常，要求用户重新登录
         throw new CoderitlException("操作失败,请重新登录");
     }
+
 }
