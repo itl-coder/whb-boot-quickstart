@@ -26,6 +26,7 @@
     <properties>
         <java.version>17</java.version>
         <spring-boot.version>2.7.12</spring-boot.version>
+        <!-- 生成二维码图片 -->
         <zxing.version>3.5.0</zxing.version>
         <mysql.version>8.0.33</mysql.version>
         <lombok.version>1.18.26</lombok.version>
@@ -42,6 +43,7 @@
         <jjwt.version>0.9.1</jjwt.version>
         <fastjson.version>2.0.43</fastjson.version>
         <hutool-all.version>5.8.28</hutool-all.version>
+        <!-- 验证码 -->
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -157,6 +159,10 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
