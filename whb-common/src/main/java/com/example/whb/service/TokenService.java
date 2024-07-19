@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 
 import javax.crypto.SecretKey;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 public interface TokenService {
@@ -48,4 +49,8 @@ public interface TokenService {
      * @return 新的Token数据
      */
     public String refreshToken(String token);
+
+    public Integer fromTokenGetUserId(HttpServletRequest request);
+
+    public String getToken(HttpServletRequest request);
 }

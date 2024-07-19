@@ -41,6 +41,7 @@ public class JwtConfigProperties implements InitializingBean {
     public static Long EXPIRETIME;
     public static Boolean NEVEREXPIRE;
 
+
     /**
      * TODO: InitializingBean 作用是什么,属性该如何使用？
      *

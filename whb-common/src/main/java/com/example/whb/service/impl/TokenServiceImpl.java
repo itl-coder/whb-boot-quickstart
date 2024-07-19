@@ -7,11 +7,13 @@ import com.example.whb.service.TokenService;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -132,6 +134,9 @@ public class TokenServiceImpl implements TokenService {
         log.info("into TokenServiceImpl verfiyToken..................................");
 
         try {
+            if (StringUtils.isEmpty(token)) {
+                return false;
+            }
             // 使用预设的秘钥解析并验证JWT令牌
             Jwts.parser()
                     .setSigningKey(this.getSecretKey())
@@ -171,6 +176,50 @@ public class TokenServiceImpl implements TokenService {
             return this.createToken(Integer.parseInt(claimsJws.getBody().getId()), JSON.parseObject(claimsJws.getBody().getSubject(), Map.class));
         }
         // 如果令牌无效，抛出异常，提示用户重新登录
+        throw new CoderitlException("操作失败,请重新登录");
+    }
+
+    /**
+     * 从HTTP请求中获取用户ID。
+     * 该方法首先尝试从请求的头信息中获取JWT令牌，如果令牌不存在，则尝试从请求参数中获取。
+     * 如果令牌存在且验证有效，则从令牌中解析用户ID并返回；如果令牌无效或不存在，则抛出异常，
+     * 要求用户重新登录。
+     *
+     * @param request HTTP请求对象，用于获取请求头和参数。
+     * @return 解析出的用户ID。
+     * @throws CoderitlException 如果令牌无效或不存在，抛出此异常。
+     */
+    @Override
+    public Integer fromTokenGetUserId(HttpServletRequest request) {
+        String token = getTokenInfo(request);
+        // 验证令牌的有效性
+        if (this.verfiyToken(token)) {
+            // 如果令牌有效，解析令牌并返回用户ID
+            return Integer.parseInt(this.parseToken(token).getBody().getId());
+        }
+        // 如果令牌无效，抛出异常，要求用户重新登录
+        throw new CoderitlException("操作失败,请重新登录");
+    }
+
+    private String getTokenInfo(HttpServletRequest request) {
+        // 尝试从请求头中获取JWT令牌
+        String token = request.getHeader(jwtConfigProperties.getHeader());
+        // 如果请求头中没有JWT令牌，则尝试从请求参数中获取
+        if (StringUtils.isEmpty(token)) {
+            token = request.getParameter(jwtConfigProperties.getHeader());
+        }
+        return token;
+    }
+
+    @Override
+    public String getToken(HttpServletRequest request) {
+        // 尝试从请求头中获取JWT令牌
+        String token = getTokenInfo(request);
+        // 验证令牌的有效性
+        if (this.verfiyToken(token)) {
+            return token;
+        }
+        // 如果令牌无效，抛出异常，要求用户重新登录
         throw new CoderitlException("操作失败,请重新登录");
     }
 }
