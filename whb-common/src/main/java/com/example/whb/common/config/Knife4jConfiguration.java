@@ -35,6 +35,18 @@ public class Knife4jConfiguration {
     }
 
     @Bean
+    public Docket authApiConfig() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                // 是否启用Swagger
+                .enable(enabled)
+                .groupName("authApi")
+                .apiInfo(adminApiInfo())
+                .select()
+                .paths(PathSelectors.regex("/auth/.*"))
+                .build();
+    }
+
+    @Bean
     public Docket webApiConfig() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .enable(enabled)

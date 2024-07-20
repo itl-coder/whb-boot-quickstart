@@ -17,6 +17,7 @@
         <module>whb-security</module>
         <module>whb-module</module>
         <module>whb-service</module>
+        <module>whb-system</module>
     </modules>
 
     <groupId>com.example</groupId>

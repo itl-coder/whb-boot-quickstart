@@ -1,3 +1,5 @@
+file:
+  upload-dir: D://brand
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,9 +18,6 @@ mybatis-plus:
   global-config:
     db-config:
       update-strategy: not_null
-
-file:
-  upload-dir: D://brand
 
 # token配置
 token:

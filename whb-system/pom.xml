@@ -9,32 +9,15 @@
     </parent>
 
     <groupId>com.example</groupId>
-    <artifactId>whb-admin</artifactId>
+    <artifactId>whb-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <properties>
-        <java.version>17</java.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>whb-security</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>whb-system</artifactId>
+            <artifactId>whb-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

@@ -72,7 +72,7 @@ public class LoginUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        log.info("into LoginUser getPassword...........................");
+        log.info("into LoginUser getPassword...........................: {}",sysUser.getPassword());
         return sysUser.getPassword();
     }
 
@@ -80,6 +80,10 @@ public class LoginUser implements UserDetails {
     public String getUsername() {
         log.info("into LoginUser getUsername...........................");
         return sysUser.getUsername();
+    }
+
+    public LoginUser(SysUser sysUser) {
+        this.sysUser = sysUser;
     }
 
     /**

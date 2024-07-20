@@ -1,10 +1,10 @@
-package com.example.whb.common;
+package com.example.whb.system;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WhbCommonApplicationTests {
+class WhbSystemApplicationTests {
 
     @Test
     void contextLoads() {

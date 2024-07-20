@@ -26,6 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private JwtCheckInterceptor jwtCheckInterceptor;
 
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         log.info("into WebConfig addInterceptors..................");

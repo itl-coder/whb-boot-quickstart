@@ -34,7 +34,6 @@ public class SysUser extends BaseEntity implements Serializable {
      */
     @ExcelProperty("用户名")
     @ApiModelProperty(value = "用户名", example = "admin")
-    @TableId(value = "id", type = IdType.AUTO)
     private String username;
 
     /**

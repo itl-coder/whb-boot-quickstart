@@ -1,10 +1,12 @@
 package com.example.whb;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
+@MapperScan("com.example.whb.*.mapper")
 @SpringBootApplication
 public class WhbApplication {
     public static void main(String[] args) {
@@ -17,7 +19,7 @@ public class WhbApplication {
                         "InitUserName: {}\n\t" +
                         "InitPassword: {}\n\t" +
                         "----------------------------------------------------------",
-                "http://localhost:8081/doc.html", "http://localhost:3306/school_driv","user","1234");
+                "http://localhost:8081/doc.html", "http://localhost:3306/school_driv", "user", "1234");
 
     }
 }

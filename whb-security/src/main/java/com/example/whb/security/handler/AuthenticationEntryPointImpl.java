@@ -18,7 +18,6 @@ import java.io.Serializable;
 /**
  * 认证失败处理类 返回未授权
  */
-
 @Slf4j
 @Component
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, Serializable {
@@ -30,6 +29,6 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, S
             throws IOException {
         Integer code = HttpStatus.UNAUTHORIZED.value();
         log.error("请求访问：{}，认证失败，无法访问系统资源", request.getRequestURI());
-        ResponseUtils.responseJson(response, AjaxResult.error(code, "请求访问：{}，认证失败，无法访问系统资源"));
+        ResponseUtils.responseJson(response, AjaxResult.error(code, "认证失败，无法访问系统资源"));
     }
 }
