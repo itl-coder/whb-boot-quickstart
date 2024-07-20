@@ -9,6 +9,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password:
 
 mybatis-plus:
   type-aliases-package: com.example.domain.*

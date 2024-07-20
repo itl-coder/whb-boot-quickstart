@@ -23,6 +23,6 @@ public class LoginController extends BaseController {
     @PostMapping("/login")
     public AjaxResult login(@RequestBody LoginBody loginBody) {
         String token = loginService.login(loginBody);
-        return success(token);
+        return success("登录成功", token);
     }
 }

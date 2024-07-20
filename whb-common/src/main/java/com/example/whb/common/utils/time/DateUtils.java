@@ -1,4 +1,4 @@
-package com.example.whb.common.utils;
+package com.example.whb.common.utils.time;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 

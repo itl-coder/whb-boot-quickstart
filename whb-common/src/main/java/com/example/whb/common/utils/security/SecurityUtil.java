@@ -1,4 +1,4 @@
-package com.example.whb.common.security;
+package com.example.whb.common.utils.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

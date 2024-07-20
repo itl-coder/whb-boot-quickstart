@@ -1,7 +1,7 @@
 package com.example.whb.security.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.example.whb.common.security.SecurityUtil;
+import com.example.whb.common.utils.security.SecurityUtil;
 import com.example.whb.domain.LoginUser;
 import com.example.whb.domain.SysUser;
 import com.example.whb.mapper.SysUserMapper;

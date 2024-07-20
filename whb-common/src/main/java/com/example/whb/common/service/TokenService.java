@@ -1,6 +1,5 @@
 package com.example.whb.common.service;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 
@@ -33,7 +32,7 @@ public interface TokenService {
      * @param token
      * @return 返回true表示合法，false表示不合法
      */
-    public boolean verfiyToken(String token);
+    public boolean verifiyToken(String token);
 
     /**
      * 加密 key

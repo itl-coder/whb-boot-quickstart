@@ -1,6 +1,6 @@
 package com.example.whb.admin;
 
-import com.example.whb.common.security.SecurityUtil;
+import com.example.whb.common.utils.security.SecurityUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

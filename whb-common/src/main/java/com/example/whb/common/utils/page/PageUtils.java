@@ -1,4 +1,4 @@
-package com.example.whb.common.utils;
+package com.example.whb.common.utils.page;
 
 
 import com.example.whb.common.page.PageDomain;

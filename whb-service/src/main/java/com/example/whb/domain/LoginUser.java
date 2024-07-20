@@ -22,7 +22,7 @@ public class LoginUser implements UserDetails {
     /**
      * 用户ID
      */
-    private Long userId;
+    private Integer userId;
 
     /**
      * 用户唯一标识

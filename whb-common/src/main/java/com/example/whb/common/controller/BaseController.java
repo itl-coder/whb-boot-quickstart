@@ -2,8 +2,8 @@ package com.example.whb.common.controller;
 
 
 import com.example.whb.common.response.AjaxResult;
-import com.example.whb.common.utils.DateUtils;
-import com.example.whb.common.utils.PageUtils;
+import com.example.whb.common.utils.time.DateUtils;
+import com.example.whb.common.utils.page.PageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
