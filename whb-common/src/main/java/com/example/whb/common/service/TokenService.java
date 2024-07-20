@@ -1,5 +1,6 @@
 package com.example.whb.common.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 

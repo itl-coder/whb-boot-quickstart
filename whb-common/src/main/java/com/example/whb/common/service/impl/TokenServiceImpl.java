@@ -108,7 +108,7 @@ public class TokenServiceImpl implements TokenService {
         log.info("into TokenServiceImpl parseToken..................................");
 
         // 验证令牌是否有效。
-        if (this.verfiyToken(token)) {
+        if (this.verifiyToken(token)) {
             // 使用预定义的秘钥解析令牌，并返回包含声明的Jws对象。
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(this.getSecretKey()).parseClaimsJws(token);
             return claimsJws;
@@ -129,9 +129,9 @@ public class TokenServiceImpl implements TokenService {
      * @return 如果令牌有效则返回true，否则返回false。
      */
     @Override
-    public boolean verfiyToken(String token) {
+    public boolean verifiyToken(String token) {
         // 记录进入verifyToken方法的日志信息
-        log.info("into TokenServiceImpl verfiyToken..................................");
+        log.info("into TokenServiceImpl verifiyToken()..................................");
 
         try {
             if (StringUtils.isEmpty(token)) {
@@ -146,7 +146,7 @@ public class TokenServiceImpl implements TokenService {
             return true;
         } catch (JwtException e) {
             // 记录令牌验证失败的日志信息
-            log.error("into TokenServiceImpl verfiyToken error.................................");
+            log.error("into TokenServiceImpl verifiyToken() error.................................");
             // 解析失败，说明令牌无效，返回false
             return false;
         }
@@ -169,7 +169,7 @@ public class TokenServiceImpl implements TokenService {
         // 记录进入刷新令牌方法的日志
         log.info("into TokenServiceImpl refreshToken..................................");
         // 验证令牌是否有效
-        if (this.verfiyToken(token)) {
+        if (this.verifiyToken(token)) {
             // 解析令牌，获取其中的声明信息
             Jws<Claims> claimsJws = this.parseToken(token);
             // 根据解析出的用户ID和主题信息，生成新的令牌
@@ -193,7 +193,7 @@ public class TokenServiceImpl implements TokenService {
     public Integer fromTokenGetUserId(HttpServletRequest request) {
         String token = getTokenInfo(request);
         // 验证令牌的有效性
-        if (this.verfiyToken(token)) {
+        if (this.verifiyToken(token)) {
             // 如果令牌有效，解析令牌并返回用户ID
             return Integer.parseInt(this.parseToken(token).getBody().getId());
         }
@@ -225,7 +225,7 @@ public class TokenServiceImpl implements TokenService {
         String token = getTokenInfo(request);
         // 验证获取到的令牌是否有效
         // 验证令牌的有效性
-        if (this.verfiyToken(token)) {
+        if (this.verifiyToken(token)) {
             return token;
         }
         // 如果令牌无效，抛出异常，要求用户重新登录
