@@ -1,6 +1,7 @@
 package com.example.whb.common.service.impl;
 
 import com.alibaba.fastjson2.JSON;
+import com.example.whb.common.domain.LoginUser;
 import com.example.whb.common.exception.CoderitlException;
 import com.example.whb.common.properties.JwtConfigProperties;
 import com.example.whb.common.service.TokenService;
@@ -17,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+
+import static com.example.whb.common.constants.Constants.LOGIN_TOKEN_KEY;
 
 @Slf4j
 @Service
@@ -25,6 +29,11 @@ public class TokenServiceImpl implements TokenService {
     private JwtConfigProperties jwtConfigProperties;
     // 签名算法
     private SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+
+    protected static final long MILLIS_SECOND = 1000;
+    protected static final long MILLIS_MINUTE = 60 * MILLIS_SECOND;
+    private static final Long MILLIS_MINUTE_TEN = 20 * 60 * 1000L;
 
     /**
      * 获取用于JWT签名的密钥。
@@ -233,4 +242,13 @@ public class TokenServiceImpl implements TokenService {
         throw new CoderitlException("操作失败,请重新登录");
     }
 
+    @Override
+    public String createToken(LoginUser loginUser) {
+        String token = UUID.randomUUID().toString();
+        loginUser.setToken(token);
+        // TODO: 刷新Token
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(LOGIN_TOKEN_KEY, token);
+        return createToken(loginUser.getSysUser().getId(), claims);
+    }
 }

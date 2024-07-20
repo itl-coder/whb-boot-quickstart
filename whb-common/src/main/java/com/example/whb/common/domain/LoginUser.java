@@ -1,4 +1,4 @@
-package com.example.whb.domain;
+package com.example.whb.common.domain;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Data;
@@ -42,7 +42,7 @@ public class LoginUser implements UserDetails {
     /**
      * 登录IP地址
      */
-    private String ipaddr;
+    private String ipAddr;
 
     /**
      * 登录地点

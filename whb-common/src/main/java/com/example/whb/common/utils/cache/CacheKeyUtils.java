@@ -1,6 +1,6 @@
 package com.example.whb.common.utils.cache;
 
-import com.example.whb.common.constants.CacheConstant;
+import com.example.whb.common.constants.Constants;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,6 +14,6 @@ public class CacheKeyUtils {
 
     public void cacheToken(Integer userId, String token) {
         log.info("into CacheKeyUtils cacheToken............");
-        redisTemplate.opsForValue().set(CacheConstant.LOGIN_TOKEN_KEY + userId, token);
+        redisTemplate.opsForValue().set(Constants.LOGIN_TOKEN_KEY + userId, token);
     }
 }

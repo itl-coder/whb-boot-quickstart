@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @Api(tags = "认证服务")
 @RestController
 @RequestMapping("/auth")
@@ -23,6 +25,8 @@ public class LoginController extends BaseController {
     @PostMapping("/login")
     public AjaxResult login(@RequestBody LoginBody loginBody) {
         String token = loginService.login(loginBody);
-        return success("登录成功", token);
+        HashMap<String, Object> resMap = new HashMap<>();
+        resMap.put("token", token);
+        return success("登录成功", resMap);
     }
 }

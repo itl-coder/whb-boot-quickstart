@@ -1,5 +1,6 @@
 package com.example.whb.common.service;
 
+import com.example.whb.common.domain.LoginUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -17,6 +18,14 @@ public interface TokenService {
      * @return 返回一个有效的Token数据字符串
      */
     public String createToken(Integer userId, Map<String, Object> subject);
+
+    /**
+     * 创建令牌
+     *
+     * @param loginUser 用户信息
+     * @return 令牌
+     */
+    public String createToken(LoginUser loginUser);
 
     /**
      * 是根据Token字符串内容解析出其组成的信息(头信息与附加信息)

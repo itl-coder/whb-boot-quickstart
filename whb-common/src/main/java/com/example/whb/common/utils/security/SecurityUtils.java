@@ -8,11 +8,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Slf4j
 @Configuration
-public class SecurityUtil {
+public class SecurityUtils {
     @Bean
     public PasswordEncoder passwordEncoder() {
-        log.info("into SecurityUtil passwordEncoder.....................");
-
+        log.info("into SecurityUtils passwordEncoder.....................");
         return new BCryptPasswordEncoder();
     }
+
+    public  String encodePassword(String password) {
+        return passwordEncoder().encode(password);
+    }
+
+    public boolean matchesPassword(CharSequence rawPassword, String encodedPassword) {
+        return passwordEncoder().matches(rawPassword, encodedPassword);
+    }
+
 }

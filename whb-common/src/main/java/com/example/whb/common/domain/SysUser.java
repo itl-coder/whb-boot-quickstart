@@ -1,16 +1,16 @@
-package com.example.whb.domain;
+package com.example.whb.common.domain;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.example.whb.common.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 系统用户
@@ -112,6 +112,18 @@ public class SysUser extends BaseEntity implements Serializable {
     @ExcelProperty("凭证是否过期")
     @ApiModelProperty(value = "凭证是否过期（0：未过期，1：已过期）", example = "0")
     private Integer credentialExpired;
+
+    /**
+     * 最后登录IP
+     */
+    @ExcelProperty("最后登录IP")
+    private String loginIp;
+
+    /**
+     * 最后登录时间
+     */
+    @ExcelProperty("最后登录时间")
+    private Date loginDate;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

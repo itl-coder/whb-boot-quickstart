@@ -1,4 +1,4 @@
-package com.example.whb.common.entity;
+package com.example.whb.common.domain;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.TableLogic;
