@@ -1,9 +1,15 @@
 package com.example.whb;
 
+import com.example.whb.common.utils.security.SecurityUtils;
+import com.example.whb.mapper.SysUserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.annotation.PostConstruct;
 
 @Slf4j
 @MapperScan("com.example.whb.*.mapper")

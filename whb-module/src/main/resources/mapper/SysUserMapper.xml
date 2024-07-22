@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.whb.domain.mapper.SysUserMapper">
+<mapper namespace="com.example.whb.mapper.SysUserMapper">
 
     <resultMap id="BaseResultMap" type="com.example.whb.common.domain.SysUser">
             <id property="id" column="id" jdbcType="BIGINT"/>
@@ -35,4 +35,8 @@
         enabled,credential_expired,create_time,
         update_time
     </sql>
+
+    <update id="updatePassword">
+        UPDATE sys_user SET password = #{pass} WHERE id = ${id}
+    </update>
 </mapper>
