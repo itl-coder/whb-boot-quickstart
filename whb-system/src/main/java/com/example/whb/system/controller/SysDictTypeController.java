@@ -21,7 +21,9 @@ public class SysDictTypeController extends BaseController {
 
     @GetMapping
     @ApiOperation("字典类型列表")
-    public AjaxResult list(){
+    public AjaxResult list() {
         return success(sysDictTypeService.list());
     }
+
+
 }

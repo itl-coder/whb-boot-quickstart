@@ -5,16 +5,20 @@
 <mapper namespace="com.example.whb.system.mapper.SysDictTypeMapper">
 
     <resultMap id="BaseResultMap" type="com.example.whb.system.domain.SysDictType">
-            <id property="id" column="id" jdbcType="INTEGER"/>
+            <id property="dictId" column="dict_id" jdbcType="BIGINT"/>
             <result property="dictName" column="dict_name" jdbcType="VARCHAR"/>
             <result property="dictType" column="dict_type" jdbcType="VARCHAR"/>
-            <result property="state" column="state" jdbcType="INTEGER"/>
-            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,dict_name,dict_type,
-        state,remark,create_time
+        dict_id,dict_name,dict_type,
+        status,create_by,create_time,
+        update_by,update_time,remark
     </sql>
 </mapper>

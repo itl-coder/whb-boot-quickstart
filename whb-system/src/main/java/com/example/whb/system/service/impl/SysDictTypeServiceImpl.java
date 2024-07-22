@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author coderitl
- * @description 针对表【sys_dict_type(字典键表)】的数据库操作Service实现
- * @createDate 2024-07-20 23:03:51
+ * @description 针对表【sys_dict_type(字典类型表)】的数据库操作Service实现
+ * @createDate 2024-07-23 01:19:03
  */
 @Service
 public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDictType>
