@@ -17,7 +17,7 @@ import java.util.HashMap;
 @Api(tags = "认证服务")
 @RestController
 @RequestMapping("/auth")
-public class LoginController extends BaseController {
+public class AuthController extends BaseController {
     @Autowired
     private LoginService loginService;
 
