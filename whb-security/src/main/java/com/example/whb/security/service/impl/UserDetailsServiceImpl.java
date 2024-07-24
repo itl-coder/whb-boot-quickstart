@@ -23,8 +23,6 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPasswordService {
     @Autowired
     private SysUserMapper sysUserMapper;
-    @Autowired
-    private SecurityUtils securityUtils;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -77,7 +75,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
         log.info("into UserDetailsServiceImpl updatePassword........................................");
 
         SysUser sysUser = getSysUser(user.getUsername());
-        sysUser.setPassword(securityUtils.encodePassword(newPassword));
+        sysUser.setPassword(SecurityUtils.encodePassword(newPassword));
         sysUserMapper.updateById(sysUser);
         LoginUser loginUser = new LoginUser(sysUser);
         return loginUser;

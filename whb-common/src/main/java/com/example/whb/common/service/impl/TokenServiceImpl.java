@@ -141,7 +141,6 @@ public class TokenServiceImpl implements TokenService {
     public boolean verifiyToken(String token) {
         // 记录进入verifyToken方法的日志信息
         log.info("into TokenServiceImpl verifiyToken()..................................");
-
         try {
             if (StringUtils.isEmpty(token)) {
                 return false;
@@ -229,17 +228,8 @@ public class TokenServiceImpl implements TokenService {
      */
     @Override
     public String getToken(HttpServletRequest request) throws CoderitlException {
-        // 尝试从请求头中获取JWT令牌信息
         // 尝试从请求头中获取JWT令牌
-        String token = getTokenInfo(request);
-        // 验证获取到的令牌是否有效
-        // 验证令牌的有效性
-        if (this.verifiyToken(token)) {
-            return token;
-        }
-        // 如果令牌无效，抛出异常，要求用户重新登录
-        // 如果令牌无效，抛出异常，要求用户重新登录
-        throw new CoderitlException("操作失败,请重新登录");
+        return getTokenInfo(request);
     }
 
     @Override

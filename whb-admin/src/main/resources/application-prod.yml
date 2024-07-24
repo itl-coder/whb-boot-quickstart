@@ -32,7 +32,7 @@ file:
 # token配置
 token:
   # 是否永不过期
-  never-expire: false
+  never-expire: true
   # 令牌自定义标识
   header: Authorization
   # 令牌密钥
