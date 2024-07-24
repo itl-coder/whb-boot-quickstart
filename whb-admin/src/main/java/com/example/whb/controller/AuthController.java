@@ -24,9 +24,6 @@ public class AuthController extends BaseController {
     @ApiOperation(value = "登录")
     @PostMapping("/login")
     public AjaxResult login(@RequestBody LoginBody loginBody) {
-        String token = loginService.login(loginBody);
-        HashMap<String, Object> resMap = new HashMap<>();
-        resMap.put("token", token);
-        return success("登录成功", resMap);
+        return success("登录成功", loginService.login(loginBody));
     }
 }

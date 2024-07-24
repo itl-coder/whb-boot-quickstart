@@ -114,7 +114,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests) -> {
                     // 对于登录login 注册register 验证码captchaImage 允许匿名访问
-                    requests.antMatchers("/auth/login", "/register", "/captchaImage").permitAll()
+                    requests.antMatchers("/auth/login", "/auth/register", "/captchaImage").permitAll()
                             // 静态资源，可匿名访问
                             .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/profile/**", "/favicon.ico").permitAll()
                             .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/*/api-docs", "/druid/**").permitAll()
