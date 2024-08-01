@@ -1,4 +1,4 @@
-package com.example.whb.controller;
+package com.example.whb.controller.auth;
 
 import com.example.whb.common.controller.BaseController;
 import com.example.whb.common.response.AjaxResult;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
 
 @Api(tags = "认证服务")
 @RestController

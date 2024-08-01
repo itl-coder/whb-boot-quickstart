@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.example.whb.common.domain.LoginUser;
 import com.example.whb.common.domain.SysUser;
 import com.example.whb.common.utils.security.SecurityUtils;
-import com.example.whb.mapper.SysUserMapper;
+import com.example.whb.system.mapper.SysUserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeanUtils;

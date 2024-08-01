@@ -9,7 +9,7 @@ import com.example.whb.common.utils.ip.IpUtils;
 import com.example.whb.common.utils.time.DateUtils;
 import com.example.whb.domain.vo.LoginBody;
 import com.example.whb.service.LoginService;
-import com.example.whb.service.SysUserService;
+import com.example.whb.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;

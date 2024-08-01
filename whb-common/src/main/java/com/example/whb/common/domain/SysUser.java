@@ -20,7 +20,7 @@ import java.util.Date;
 @Data
 @TableName(value = "sys_user")
 @ApiModel(description = "系统用户实体类")
-public class SysUser extends BaseEntity implements Serializable {
+public class SysUser implements Serializable {
     /**
      * 自增主键
      */

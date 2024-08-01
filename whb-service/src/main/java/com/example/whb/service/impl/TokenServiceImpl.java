@@ -1,10 +1,10 @@
-package com.example.whb.common.service.impl;
+package com.example.whb.service.impl;
 
 import com.alibaba.fastjson2.JSON;
-import com.example.whb.common.domain.LoginUser;
 import com.example.whb.common.exception.CoderitlException;
 import com.example.whb.common.properties.JwtConfigProperties;
 import com.example.whb.common.service.TokenService;
+import com.example.whb.common.domain.LoginUser;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;

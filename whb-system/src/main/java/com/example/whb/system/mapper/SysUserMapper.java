@@ -1,4 +1,4 @@
-package com.example.whb.mapper;
+package com.example.whb.system.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

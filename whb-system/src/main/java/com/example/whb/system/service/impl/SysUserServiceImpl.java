@@ -1,10 +1,10 @@
-package com.example.whb.service.impl;
+package com.example.whb.system.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.whb.common.domain.SysUser;
-import com.example.whb.mapper.SysUserMapper;
-import com.example.whb.service.SysUserService;
+import com.example.whb.system.mapper.SysUserMapper;
+import com.example.whb.system.service.SysUserService;
 import org.springframework.stereotype.Service;
 
 @Service
