@@ -1,8 +1,8 @@
-package com.example.whb.system.controller.service.impl;
+package com.example.whb.system.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.whb.system.controller.service.SysRoleMenuService;
+import com.example.whb.system.service.SysRoleMenuService;
 import com.example.whb.system.domain.SysRoleMenu;
 import com.example.whb.system.mapper.SysRoleMenuMapper;
 import org.springframework.stereotype.Service;

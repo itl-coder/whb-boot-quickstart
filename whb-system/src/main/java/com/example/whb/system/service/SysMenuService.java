@@ -1,8 +1,10 @@
-package com.example.whb.system.controller.service;
+package com.example.whb.system.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.whb.system.domain.SysMenu;
+
+import java.util.List;
 
 /**
  * @author coderitl
@@ -11,4 +13,5 @@ import com.example.whb.system.domain.SysMenu;
  */
 public interface SysMenuService extends IService<SysMenu> {
 
+    List<SysMenu> queryTreeMenuList();
 }

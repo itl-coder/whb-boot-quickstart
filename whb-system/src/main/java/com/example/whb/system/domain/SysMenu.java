@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 菜单权限表
@@ -117,6 +118,9 @@ public class SysMenu implements Serializable {
      * 备注
      */
     private String remark;
+
+    @TableField(exist = false)
+    private List<SysMenu> children;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

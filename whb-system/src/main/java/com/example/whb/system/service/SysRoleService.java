@@ -1,4 +1,4 @@
-package com.example.whb.system.controller.service;
+package com.example.whb.system.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;

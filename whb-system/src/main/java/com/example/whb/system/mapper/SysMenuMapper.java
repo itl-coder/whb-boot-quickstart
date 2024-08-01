@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.whb.system.domain.SysMenu;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author coderitl
  * @description 针对表【sys_menu(菜单权限表)】的数据库操作Mapper
@@ -14,5 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
-
+    List<SysMenu> selectAll();
 }
