@@ -17,4 +17,6 @@ import java.util.List;
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
     List<SysMenu> selectAll();
+
+    List<SysMenu> querySysMenuByUserId(Integer userId);
 }

@@ -41,5 +41,12 @@
         <include refid="Base_Column_List"/>
         from sys_menu ORDER BY order_num
     </select>
+    <select id="querySysMenuByUserId" resultType="com.example.whb.system.domain.SysMenu">
+        SELECT DISTINCT m.*
+        FROM sys_menu m
+                 INNER JOIN sys_role_menu rm ON m.menu_id = rm.menu_id
+                 INNER JOIN sys_user_role ur ON rm.role_id = ur.role_id
+        WHERE ur.user_id = #{userId}
+    </select>
 
 </mapper>
